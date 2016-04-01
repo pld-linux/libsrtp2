@@ -50,27 +50,6 @@
  
  #ifdef SRTP_KERNEL
  
---- libsrtp-1.5.2/crypto/include/kernel_compat.h.orig	2015-03-11 15:02:12.000000000 +0100
-+++ libsrtp-1.5.2/crypto/include/kernel_compat.h	2015-08-05 20:50:34.308246240 +0200
-@@ -46,6 +46,8 @@
- #ifndef KERNEL_COMPAT_H
- #define KERNEL_COMPAT_H
- 
-+#include "config.h"
-+
- #ifdef SRTP_KERNEL_LINUX
- 
- #include <linux/kernel.h>
---- libsrtp-1.5.2/crypto/include/prng.h.orig	2015-03-11 15:02:12.000000000 +0100
-+++ libsrtp-1.5.2/crypto/include/prng.h	2015-08-05 20:50:54.158245407 +0200
-@@ -46,6 +46,7 @@
- #ifndef PRNG_H
- #define PRNG_H
- 
-+#include "config.h"
- #include "rand_source.h"  /* for rand_source_func_t definition       */
- #include "aes.h"          /* for aes                                 */
- //FIXME: this is temporary until we pull in the code to use OpenSSL for RNG
 --- libsrtp-1.5.2/crypto/include/sha1.h.orig	2015-08-05 20:34:49.334952564 +0200
 +++ libsrtp-1.5.2/crypto/include/sha1.h	2015-08-05 20:51:23.068244194 +0200
 @@ -47,9 +47,7 @@
@@ -84,25 +63,3 @@
  
  #include "err.h"
  #ifdef OPENSSL
---- libsrtp-1.5.2/crypto/include/rand_source.h.orig	2015-03-11 15:02:12.000000000 +0100
-+++ libsrtp-1.5.2/crypto/include/rand_source.h	2015-08-05 21:41:41.868117509 +0200
-@@ -49,6 +49,10 @@
- #include "err.h"
- #include "datatypes.h"
- 
-+#ifdef __cplusplus
-+extern "C" {
-+#endif
-+
- err_status_t
- rand_source_init(void);
- 
-@@ -88,4 +92,8 @@
- typedef err_status_t (*rand_source_func_t)
-      (void *dest, uint32_t num_octets);
- 
-+#ifdef __cplusplus
-+}
-+#endif
-+
- #endif /* RAND_SOURCE */
