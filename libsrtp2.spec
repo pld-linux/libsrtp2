@@ -18,6 +18,7 @@ BuildRequires:	openssl-devel >= 1.0.1
 BuildRequires:	pkgconfig
 BuildRequires:	texlive-latex
 BuildRequires:	texlive-latex-extend
+BuildRequires:	texlive-latex-wasysym
 BuildRequires:	texlive-pdftex
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
