@@ -1,14 +1,12 @@
 Summary:	Open-source implementation of Secure Real-time Transport Protocol
 Summary(pl.UTF-8):	Otwarta implementacja protokołu Secure Real-time Transport Protocol
 Name:		libsrtp2
-Version:	2.0.0
+Version:	2.1.0
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}/libsrtp-%{version}.tar.gz
-# Source0-md5:	54b7fbc8ed45aa3c1c02511ee8976dd9
-Patch0:		%{name}-headers.patch
-Patch1:		%{name}-doxygen.patch
+# Source0-md5:	49e2b9973c6fe77de46100e4c9547426
 URL:		https://github.com/cisco/libsrtp
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -16,10 +14,6 @@ BuildRequires:	doxygen
 BuildRequires:	libpcap-devel
 BuildRequires:	openssl-devel >= 1.0.1
 BuildRequires:	pkgconfig
-BuildRequires:	texlive-latex
-BuildRequires:	texlive-latex-extend
-BuildRequires:	texlive-latex-wasysym
-BuildRequires:	texlive-pdftex
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,8 +54,6 @@ Statyczna biblioteka SRTP.
 
 %prep
 %setup -q -n libsrtp-%{version}
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__aclocal}
@@ -87,12 +79,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README TODO
+%doc CHANGES LICENSE README.md
 %attr(755,root,root) %{_libdir}/libsrtp2.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/{*.txt,*.pdf}
+%doc doc/html/*
 %attr(755,root,root) %{_libdir}/libsrtp2.so
 %{_pkgconfigdir}/libsrtp2.pc
 %{_includedir}/srtp2
