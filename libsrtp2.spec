@@ -2,7 +2,7 @@ Summary:	Open-source implementation of Secure Real-time Transport Protocol
 Summary(pl.UTF-8):	Otwarta implementacja protokołu Secure Real-time Transport Protocol
 Name:		libsrtp2
 Version:	2.2.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}/libsrtp-%{version}.tar.gz
@@ -15,6 +15,7 @@ BuildRequires:	libpcap-devel
 BuildRequires:	openssl-devel >= 1.0.1
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
+Obsoletes:	srtp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,6 +34,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libpcap-devel
 Requires:	openssl-devel >= 1.0.1
 Requires:	zlib-devel
+Obsoletes:	srtp-devel
 
 %description devel
 Header files for SRTP library.
@@ -45,6 +47,7 @@ Summary:	Static SRTP library
 Summary(pl.UTF-8):	Statyczna biblioteka SRTP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Obsoletes:	srtp-static
 
 %description static
 Static SRTP library.
