@@ -5,10 +5,11 @@ Version:	2.2.0
 Release:	2
 License:	BSD
 Group:		Libraries
+#Source0Download: https://github.com/cisco/libsrtp/releases
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}/libsrtp-%{version}.tar.gz
 # Source0-md5:	f77a27457d219f2991ea7aa2f0c11ec9
 URL:		https://github.com/cisco/libsrtp
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	doxygen
 BuildRequires:	libpcap-devel
@@ -55,6 +56,20 @@ Static SRTP library.
 %description static -l pl.UTF-8
 Statyczna biblioteka SRTP.
 
+%package apidocs
+Summary:	API documentation for SRTP library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki SRTP
+Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
+
+%description apidocs
+API documentation for SRTP library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki SRTP.
+
 %prep
 %setup -q -n libsrtp-%{version}
 
@@ -87,7 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/html/*
 %attr(755,root,root) %{_libdir}/libsrtp2.so
 %{_pkgconfigdir}/libsrtp2.pc
 %{_includedir}/srtp2
@@ -95,3 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libsrtp2.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc doc/html/*
