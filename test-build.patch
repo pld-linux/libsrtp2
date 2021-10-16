@@ -1,0 +1,28 @@
+diff -ur libsrtp-2.3.0/test/util.c libsrtp-2.3.0-build/test/util.c
+--- libsrtp-2.3.0/test/util.c	2019-12-23 10:58:25.000000000 +0100
++++ libsrtp-2.3.0-build/test/util.c	2021-10-16 23:09:56.357524543 +0200
+@@ -49,7 +49,7 @@
+ #include <stdint.h>
+ 
+ /* include space for null terminator */
+-char bit_string[MAX_PRINT_STRING_LEN + 1];
++char test_bit_string[MAX_PRINT_STRING_LEN + 1];
+ 
+ static inline int hex_char_to_nibble(uint8_t c)
+ {
+@@ -157,11 +157,11 @@
+     }
+ 
+     for (i = 0; i < length; i += 2) {
+-        bit_string[i] = nibble_to_hex_char(*str >> 4);
+-        bit_string[i + 1] = nibble_to_hex_char(*str++ & 0xF);
++        test_bit_string[i] = nibble_to_hex_char(*str >> 4);
++        test_bit_string[i + 1] = nibble_to_hex_char(*str++ & 0xF);
+     }
+-    bit_string[i] = 0; /* null terminate string */
+-    return bit_string;
++    test_bit_string[i] = 0; /* null terminate string */
++    return test_bit_string;
+ }
+ 
+ static const char b64chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
