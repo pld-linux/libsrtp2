@@ -1,13 +1,13 @@
 Summary:	Open-source implementation of Secure Real-time Transport Protocol
 Summary(pl.UTF-8):	Otwarta implementacja protokołu Secure Real-time Transport Protocol
 Name:		libsrtp2
-Version:	2.4.2
+Version:	2.5.0
 Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/cisco/libsrtp/releases
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}/libsrtp-%{version}.tar.gz
-# Source0-md5:	253ededcbfad5335efc0825f7ef0c6cc
+# Source0-md5:	740557a07928be1886822ce307736e89
 Patch0:		test-build.patch
 URL:		https://github.com/cisco/libsrtp
 BuildRequires:	autoconf >= 2.50
@@ -15,11 +15,11 @@ BuildRequires:	automake
 BuildRequires:	doxygen
 BuildRequires:	libpcap-devel
 # also supported: nspr>=4+nss>=3 or mbedtls (the last only in cmake build)
-BuildRequires:	openssl-devel >= 1.0.2i
+BuildRequires:	openssl-devel >= 1.1.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	zlib-devel
-Requires:	openssl >= 1.0.2i
+Requires:	openssl >= 1.1.0
 Obsoletes:	srtp < 2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,7 +37,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki SRTP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libpcap-devel
-Requires:	openssl-devel >= 1.0.2i
+Requires:	openssl-devel >= 1.1.0
 Requires:	zlib-devel
 Obsoletes:	srtp-devel < 2
 
