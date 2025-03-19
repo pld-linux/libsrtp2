@@ -1,13 +1,13 @@
 Summary:	Open-source implementation of Secure Real-time Transport Protocol
 Summary(pl.UTF-8):	Otwarta implementacja protokołu Secure Real-time Transport Protocol
 Name:		libsrtp2
-Version:	2.6.0
+Version:	2.7.0
 Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/cisco/libsrtp/releases
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}/libsrtp-%{version}.tar.gz
-# Source0-md5:	5dc5d5a3217888b85d928215df9cffbc
+# Source0-md5:	ec04a3c04da42ceede025b51fbdeeebf
 Patch0:		test-build.patch
 URL:		https://github.com/cisco/libsrtp
 BuildRequires:	autoconf >= 2.50
@@ -74,7 +74,7 @@ Dokumentacja API biblioteki SRTP.
 
 %prep
 %setup -q -n libsrtp-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal}
