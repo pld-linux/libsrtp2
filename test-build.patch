@@ -1,15 +1,15 @@
---- libsrtp-2.4.2/test/util.c.orig	2021-09-20 16:13:26.000000000 +0200
-+++ libsrtp-2.4.2/test/util.c	2022-04-02 07:36:44.355835655 +0200
-@@ -49,7 +49,7 @@
- #include <stdint.h>
+--- libsrtp-2.8.0/test/util.c.orig	2026-03-14 10:49:34.000000000 +0100
++++ libsrtp-2.8.0/test/util.c	2026-06-25 20:56:12.076698684 +0200
+@@ -55,7 +55,7 @@
+ #include <stdio.h>
  
  /* include space for null terminator */
 -static char bit_string[MAX_PRINT_STRING_LEN + 1];
 +static char test_bit_string[MAX_PRINT_STRING_LEN + 1];
  
- static inline int hex_char_to_nibble(uint8_t c)
- {
-@@ -157,11 +157,11 @@ char *octet_string_hex_string(const void
+ #define ERR_STATUS_STRING(STATUS)                                              \
+     case srtp_err_status_##STATUS:                                             \
+@@ -266,11 +266,11 @@ char *octet_string_hex_string(const void
      }
  
      for (i = 0; i < length; i += 2) {
