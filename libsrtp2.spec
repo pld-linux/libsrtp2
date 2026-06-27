@@ -1,3 +1,8 @@
+#
+# Conditional build:
+%bcond_without	apidocs		# API documentation
+%bcond_without	static_libs	# static library
+
 Summary:	Open-source implementation of Secure Real-time Transport Protocol
 Summary(pl.UTF-8):	Otwarta implementacja protokołu Secure Real-time Transport Protocol
 Name:		libsrtp2
@@ -12,7 +17,7 @@ Patch0:		test-build.patch
 URL:		https://github.com/cisco/libsrtp
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	doxygen
+%{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	libpcap-devel
 # also supported: nspr>=4+nss>=3 or mbedtls (the last only in cmake build)
 BuildRequires:	openssl-devel >= 1.1.0
@@ -85,8 +90,8 @@ cp -a /usr/share/automake/ar-lib .
 	--enable-openssl
 
 %{__make} shared_library
-%{__make} all
-%{__make} libsrtp2doc
+%{?with_static_libs:%{__make} libsrtp2.a}
+%{?with_apidocs:%{__make} libsrtp2doc}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -111,10 +116,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/libsrtp2.pc
 %{_includedir}/srtp2
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libsrtp2.a
+%endif
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %doc doc/html/*
+%endif
