@@ -6,13 +6,13 @@
 Summary:	Open-source implementation of Secure Real-time Transport Protocol
 Summary(pl.UTF-8):	Otwarta implementacja protokołu Secure Real-time Transport Protocol
 Name:		libsrtp2
-Version:	2.8.0
+Version:	2.8.1
 Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/cisco/libsrtp/releases
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}/libsrtp-%{version}.tar.gz
-# Source0-md5:	d4ebbad864e0272e9900904e50996d08
+# Source0-md5:	2c70e3595a46fab2db5f24c5d626c4b6
 Patch0:		test-build.patch
 URL:		https://github.com/cisco/libsrtp
 BuildRequires:	autoconf >= 2.50
@@ -24,7 +24,7 @@ BuildRequires:	openssl-devel >= 1.1.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	zlib-devel
-Requires:	openssl >= 1.1.0
+Requires:	openssl%{?_isa} >= 1.1.0
 Obsoletes:	srtp < 2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,10 +40,10 @@ Real-time Transport Protocol).
 Summary:	Header files for SRTP library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki SRTP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	libpcap-devel
-Requires:	openssl-devel >= 1.1.0
-Requires:	zlib-devel
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	libpcap-devel%{?_isa}
+Requires:	openssl-devel%{?_isa} >= 1.1.0
+Requires:	zlib-devel%{?_isa}
 Obsoletes:	srtp-devel < 2
 
 %description devel
@@ -56,7 +56,7 @@ Pliki nagłówkowe biblioteki SRTP.
 Summary:	Static SRTP library
 Summary(pl.UTF-8):	Statyczna biblioteka SRTP
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 Obsoletes:	srtp-static < 2
 
 %description static
@@ -90,8 +90,14 @@ cp -a /usr/share/automake/ar-lib .
 	--enable-openssl
 
 %{__make} shared_library
-%{?with_static_libs:%{__make} libsrtp2.a}
-%{?with_apidocs:%{__make} libsrtp2doc}
+
+%if %{with static_libs}
+%{__make} libsrtp2.a
+%endif
+
+%if %{with apidocs}
+%{__make} libsrtp2doc
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
